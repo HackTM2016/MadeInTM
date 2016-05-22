@@ -3,6 +3,7 @@ package ro.madeintm.madeintm.controller;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import ro.madeintm.madeintm.model.Link;
 /**
  * Created by validraganescu on 21/05/16.
  */
-public class StoryActivity extends AppCompatActivity{
+public class StoryActivity extends AppCompatActivity {
 
     private Story story;
     private List<Image> images;
@@ -38,25 +39,26 @@ public class StoryActivity extends AppCompatActivity{
             Log.d("Story", story.getTitle());
 
             //display image / icon
-            ImageView imageView = (ImageView)  findViewById(R.id.imageView);
+            ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
-            if (story.getImages().size() > 0){
+            if (story.getImages().size() > 0) {
                 images = story.getImages();
                 ImageLoader.getInstance().displayImage(images.get(0).getUrl(), imageView);
-            }
-            else{
-                if(story.getIcon() != null)
-                    ImageLoader.getInstance().displayImage(story.getIcon(),imageView);
+            } else {
+                if (story.getIcon() != null) {
+                    Log.i("Icon", story.getIcon());
+                    ImageLoader.getInstance().displayImage(story.getIcon(), imageView);
+                }
             }
 
             //display title
             TextView titleView = (TextView) findViewById(R.id.textView);
-            if(story.getTitle() != null)
+            if (story.getTitle() != null)
                 titleView.setText(story.getTitle());
 
             //display author
             TextView authorView = (TextView) findViewById(R.id.textView2);
-            if(story.getAuthor() != null){
+            if (story.getAuthor() != null) {
                 //add custom text to json info
                 String author = "Autor: " + story.getAuthor();
                 authorView.setText(author);
@@ -71,9 +73,11 @@ public class StoryActivity extends AppCompatActivity{
             TextView linkView = (TextView) findViewById(R.id.textView4);
             if (story.getLinks() != null) {
                 links = story.getLinks();
-                String link = "Sursa " + links.get(0);
-                linkView.setText(link);
-                Linkify.addLinks(linkView, Linkify.WEB_URLS);
+                if (!links.get(0).getUrl().isEmpty()) {
+                    String link = "Sursa " + links.get(0).getUrl();
+                    linkView.setText(link);
+                    Linkify.addLinks(linkView, Linkify.WEB_URLS);
+                }
             }
 
         }

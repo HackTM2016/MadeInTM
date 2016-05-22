@@ -34,7 +34,7 @@ public class MadeInTMApplication extends Application {
                 .showImageForEmptyUri(R.mipmap.ic_launcher) // resource or drawable
                 .showImageOnFail(R.mipmap.ic_launcher) // resource or drawable
                 .cacheInMemory(true) // default
-                .cacheOnDisk(false) // default
+                .cacheOnDisk(true) // default
                 .build();
 
         // Create global configuration and initialize ImageLoader with this config

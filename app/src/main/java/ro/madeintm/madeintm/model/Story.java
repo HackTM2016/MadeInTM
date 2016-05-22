@@ -59,7 +59,9 @@ public class Story extends Model {
             if (snapshotImages != null) {
                 for (DataSnapshot imageSnapshot : snapshotImages.getChildren()) {
                     Image image = new Image(imageSnapshot);
-                    images.add(image);
+                    if (image.getUrl() != null && !(image.getUrl().isEmpty())) {
+                        images.add(image);
+                    }
                 }
             }
 

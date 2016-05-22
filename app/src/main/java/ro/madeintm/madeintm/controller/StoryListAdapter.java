@@ -63,9 +63,11 @@ public class StoryListAdapter extends BaseAdapter {
             viewHolder = (StoryItemViewHolder) convertView.getTag();
         }
         Story story = stories.get(position);
-        if (story.getImages().size() > 0){
+        if (story.getImages().size() > 0) {
             String imageUrl = story.getIcon();
             ImageLoader.getInstance().displayImage(imageUrl, viewHolder.image);
+        } else if (story.getIcon() != null && !story.getIcon().isEmpty()){
+            ImageLoader.getInstance().displayImage(story.getIcon(), viewHolder.image);
         }
         if (story.getTitle() != null) {
             viewHolder.title.setText(story.getTitle());

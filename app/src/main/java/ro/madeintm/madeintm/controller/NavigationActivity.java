@@ -6,14 +6,12 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +24,7 @@ import com.mapbox.directions.MapboxDirections;
 import com.mapbox.directions.service.models.DirectionsResponse;
 import com.mapbox.directions.service.models.DirectionsRoute;
 import com.mapbox.directions.service.models.Waypoint;
+import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
@@ -72,8 +71,8 @@ public class NavigationActivity extends LocationAwareActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Intent intent = new Intent(NavigationActivity.this, CreateStoryActivity.class);
+                    startActivity(intent);
                 }
             });
         }
@@ -231,10 +230,15 @@ public class NavigationActivity extends LocationAwareActivity
             int i = 0;
             for (Story story : stories) {
                 for (ro.madeintm.madeintm.model.Location location : story.getLocations()) {
-                    mMapBoxMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(location.getLat(), location.getLon()))
-                            .title(story.getTitle())
-                            .snippet(String.valueOf(i)));
+                    if (location != null) {
+                        if (mMapBoxMap != null) {
+                            mMapBoxMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(location.getLat(), location.getLon()))
+                                    .title(story.getTitle())
+                                    .icon(IconFactory.getInstance(getApplicationContext()).fromResource(R.mipmap.ic_launcher))
+                                    .snippet(String.valueOf(i)));
+                        }
+                    }
                 }
                 i++;
 

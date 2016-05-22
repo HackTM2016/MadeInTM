@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.CreateStoryActivity">
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:id="@+id/imageButtonPhoto"
+                android:layout_margin="10dp"
+                android:src="@drawable/add_photo"
+                android:layout_weight="0.5" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:id="@+id/imageButtonText"
+                android:src="@drawable/add_text"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextTitle"
+            android:layout_margin="5dp"
+            android:hint="Add title"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:id="@+id/imageViewUploadImage"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/editTextTitle"
+            android:layout_centerHorizontal="true"
+            tools:src="@drawable/hack_tm" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDescription"
+            android:layout_below="@+id/imageViewUploadImage"
+            android:hint="Add Description"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignEnd="@+id/imageViewUploadImage" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab"
+            android:elevation="5dp"
+            android:src="@drawable/plus"
+            android:layout_above="@+id/textViewDescription"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+</ScrollView>
